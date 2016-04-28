@@ -1,23 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define STR "int main(){return(0);}"
-#define NEWSTR(size) (char *)malloc(sizeof(char) * size)
-
-int								main(void)
-{
-	int 						i = 5;
-	char						*file_name = NEWSTR(10);
-	char 						*exec_name = NEWSTR(8);
-	char 						*command = NEWSTR(54);
-	while (i >= 0) {
-		sprintf(file_name, "Sully_%i.c", i);
-		sprintf(exec_name, "Sully_%i", i);
-		FILE						*file = fopen(file_name, "w");
-		fprintf(file, STR);
-		fclose(file);
-		sprintf(command, "clang -Wall -Wextra -Werror -o %s %s && ./%s", exec_name, file_name, exec_name);
-		system(command);
-		i--;
-	}
-	return(0);
-}
+#define NEWSTR(size) (char*)malloc(sizeof(char)*size)
+#define MAIN(x) int	main(){int i=5;if(i<0)return 0;char*str="#include <stdio.h>%c#include <stdlib.h>%c#define NEWSTR(size) (char*)malloc(sizeof(char)*size)%c#define MAIN(x) int main(){int i=%d;if(i<0)return 0;char*str=%c%s%c,*file_name=NEWSTR(10),*exec_name=NEWSTR(8),*command=NEWSTR(54);sprintf(file_name,%cSully_%ci.c%c,i);sprintf(exec_name,%cSully_%ci%c,i);FILE*file=fopen(file_name,%cw%c);fprintf(file,str,10/*1*/,10/*2*/,10/*3*/,i-1,34,str,34,34,37,34,34,37,34,34,34,34,37,37,37,34,10,10);fclose(file);sprintf(command,%cclang -Wall -Wextra -Werror -o %cs %cs && ./%cs%c,exec_name,file_name,exec_name);system(command);return(0);}%cMAIN(x)%c",*file_name=NEWSTR(10),*exec_name=NEWSTR(8),*command=NEWSTR(54);sprintf(file_name,"Sully_%i.c",i);sprintf(exec_name,"Sully_%i",i);FILE*file=fopen(file_name,"w");fprintf(file,str,10/*1*/,10/*2*/,10/*3*/,i-1,34,str,34,34,37,34,34,37,34,34,34,34,37,37,37,34,10,10);fclose(file);sprintf(command,"clang -Wall -Wextra -Werror -o %s %s && ./%s",exec_name,file_name,exec_name);system(command);return(0);}
+MAIN(x)
