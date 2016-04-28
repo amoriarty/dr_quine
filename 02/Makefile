@@ -13,7 +13,7 @@
 NAME= Sully
 
 SRC_PATH= ./
-SRC_NAME= Grace.c
+SRC_NAME= Sully.c
 SRC= $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 OBJ_PATH= obj/
